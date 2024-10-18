@@ -1,0 +1,234 @@
+\documentclass{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\setlength{\parskip}{0pt}    
+\setlength{\parindent}{0pt}   
+\title{Документация библиотеки geometric\_lib}
+\author{Курбатов Максим Андреевич M3112}
+
+\date{\today}
+\begin{document}
+\maketitle
+\begin{center}
+\large Преподаватель: Жуйков Артём\\
+\end{center}
+
+\newpage
+
+\tableofcontents
+\newpage
+\section{Что включает в себя geometric_lib?}
+\\
+\largeДанная библиотека содержит 4 файла, написанных на языке Python:\\
+\\
+\large circle.py - нахождение периметра и площади круга\\
+\\
+\large square.py - нахождение периметра и площади квадрата\\
+\\
+\large triangle.py - нахождение периметра и площади треугольника\\
+\\
+\large calculate.py - нахождение периметра и площади выбранной вами фигуры\\
+
+\section{Каталог geometric_lib}
+
+\subsection{Файл 1: circle.py}
+\subsubsection{Описание}
+Этот файл содержит функции для вычисления площади и периметра круга.
+
+\subsubsection{Исходный код}
+\begin{verbatim}
+import math
+
+def area(r):
+    """Вычисляет площадь круга по формуле: 
+    S = π * r^2, где r - радиус.
+    Параметр:
+    r - радиус круга.
+    Возвращает площадь круга."""
+    return math.pi * r * r
+
+def perimeter(r):
+    """Вычисляет периметр круга по формуле: 
+    P = 2 * math.pi * r, где r - радиус.
+    Параметр:
+    r - радиус круга.
+    Возвращает периметр круга."""
+    return 2 * math.pi * r
+\end{verbatim}
+
+\subsubsection{Метод работы}
+Функция \texttt{area(r)} вычисляет площадь круга, используя формулу \( S = \pi r^2 \). Она принимает один аргумент \( r \) (радиус) и возвращает значение площади. 
+
+Функция \texttt{perimeter(r)} вычисляет периметр круга по формуле \( P = 2\pi r \), также принимая радиус \( r \) и возвращая периметр.
+
+\newpage
+
+\subsection{Файл 2: square.py}
+\subsubsection{Описание}
+Этот файл содержит функции для вычисления площади и периметра квадрата.
+
+\subsubsection{Исходный код}
+\begin{verbatim}
+def area(a):
+    """Вычисляет площадь квадрата по формуле: 
+    S = a^2, где a - длина стороны.
+    Параметр:
+    a - сторона квадрата.
+    Возвращает площадь квадрата."""
+    return a * a
+
+def perimeter(a):
+    P = 4 * a
+    return 4 * a
+\end{verbatim}
+
+\subsubsection{Метод работы}
+Функция \texttt{area(a)} вычисляет площадь квадрата по формуле \( S = a^2 \), где \( a \) — длина стороны квадрата. Она принимает один аргумент \( a \) и возвращает значение площади.
+
+Функция \texttt{perimeter(a)} находит периметр квадрата, используя формулу \( P = 4a \). Она также принимает сторону \( a \) и возвращает периметр.
+
+\newpage
+
+\subsection{Файл 3: triangle.py}
+\subsubsection{Описание}
+Этот файл содержит функции для вычисления площади и периметра треугольника.
+
+\subsubsection{Исходный код}
+\begin{verbatim}
+def area(a, b, c):
+    """Вычисляет площадь треугольника по формуле:
+    S = (a + b + c) / 2, где a, b, c - длины сторон.
+    Параметры:
+    a, b, c - стороны треугольника.
+    Возвращает площадь треугольника."""
+    return (a + b + c) / 2
+
+def perimeter(a, b, c):
+    """Вычисляет периметр треугольника по формуле:
+    P = a + b + c, где a, b, c - длины сторон.
+    Параметры:
+    a, b, c - стороны треугольника.
+    Возвращает периметр треугольника."""
+    return a + b + c
+\end{verbatim}
+
+\subsubsection{Метод работы}
+Функция \texttt{area(a, b, c)} использует формулу \((a + b + c) / 2\) для вычисления площади треугольника. Параметры \( a \), \( b \) и \( c \) — длины сторон треугольника, а возвращаемое значение — площадь.
+
+Функция \texttt{perimeter(a, b, c)} вычисляет периметр треугольника, складывая длины всех трех сторон. Она принимает три параметра \( a \), \( b \) и \( c \) и возвращает периметр.
+
+\newpage
+
+\subsection{Файл 4: calculate.py}
+\subsubsection{Описание}
+Этот файл импортирует модули для работы с фигурами и содержит функции для вычисления площади и периметра выбранной фигуры.
+
+\subsubsection{Исходный код}
+\begin{verbatim}
+import circle
+import square
+
+figs = ['circle', 'square']
+funcs = ['perimeter', 'area']
+sizes = {}
+
+def calc(fig, func, size):
+    """Выполняет расчет площади или периметра выбранной фигуры.
+    Параметры:
+    fig (str) - имя фигуры ('circle' или 'square').
+    func (str) - функция для вычисления ('perimeter' или 'area').
+    size (list) - размеры, необходимые для вычисления.
+    Возвращает результат расчета."""
+    assert fig in figs
+    assert func in funcs
+    result = eval(f'{fig}.{func}(*{size})')
+    print(f'{func} of {fig} is {result}')
+
+if __name__ == "__main__":
+    func = ''
+    fig = ''
+    size = list()
+
+    while fig not in figs:
+        fig = input(f"Enter figure name, avaliable are {figs}:\n")
+
+    while func not in funcs:
+        func = input(f"Enter function name, avaliable are {funcs}:\n")
+
+    while len(size) != sizes.get(f"{func}-{fig}", 1):
+        size = list(map(int, input("Input figure sizes separated by space, 1 
+        for circle and 
+        square\n").split(' ')))
+
+    calc(fig, func, size)
+\end{verbatim}
+
+\subsubsection{Метод работы}
+Функция \texttt{calc(fig, func, size)} выполняет расчет площади или периметра для заданной фигуры. Она принимает имя фигуры \( fig \) (например, "circle" или "square"), имя функции \( func \) (например, "area" или "perimeter") и список \( size \) с необходимыми параметрами.
+
+Функция использует \texttt{eval()} для динамического вызова соответствующей функции из модуля фигуры. Ввод значений осуществляется через стандартный ввод.
+\newpage
+\section{Хэши последних коммитов}
+
+
+\subsection{Хэши}
+\\
+L-05: Update Docs. Add user agreement info\\
+\\
+commit 438b89a1dfc58d90e9036fe431771427965cd1ff\\
+Author: Danny <bublikplushka@yandex.ru>\\
+Date:   Mon Apr 19 15:12:19 2021 +0300\\
+\\
+    L-05: Add user agreement\\
+\\
+commit 6adb96248a4d00d3bea13bd95d78ef52352cd1b4\\
+Author: smartiqa <info@smartiqa.ru>\\
+Date:   Thu Mar 4 14:55:29 2021 +0300\\
+\\
+    L-03: Docs added\\
+\\
+commit 30494317cde4419be779c14306561e0eaa78b88b (origin/feature)\\
+Author: Daniil.K <dlkay@yandex.ru>\\
+Date:   Tue Mar 30 17:36:09 2021 +0300\\
+\\
+    L-04: Add rectangle.py\\
+\\
+commit b5b0fae727ca72c317c383b39c0af73d6adcd81c (origin/develop)\\
+Author: Daniil.K <dlkay@yandex.ru>\\
+Date:   Tue Mar 30 18:02:23 2021 +0300\\
+\\
+    L-04: Update docs for calculate.py\\
+\\
+commit d76db2ac7f69cc920ae2e6f669fb0671a7fa7d71\\
+Author: Daniil.K <dlkay@yandex.ru>\\
+Date:   Tue Mar 30 17:57:42 2021 +0300\\
+\\
+    L-04: Add calculate.py
+\\
+commit 51c40ebfd0e0b65f52fe5e54740cbb038e492db3\\
+Author: smartiqa <info@smartiqa.ru>\\
+Date:   Fri Mar 26 14:52:26 2021 +0300\\
+\\
+    L-04: Doc updated for triangle
+\\
+commit d080c7888b81955bad2ed78d58ad910526b5132a\\
+Author: smartiqa <info@smartiqa.ru>\\
+Date:   Fri Mar 26 14:48:39 2021 +0300\\
+\\
+    L-04: Triangle added\\
+\\
+commit d078c8d9ee6155f3cb0e577d28d337b791de28e2 (origin/main, origin/HEAD, main)\\
+Author: smartiqa <info@smartiqa.ru>\\
+Date:   Thu Mar 4 14:55:29 2021 +0300\\
+
+    L-03: Docs added\\
+\\
+commit 8ba9aeb3cea847b63a91ac378a2a6db758682460\\
+Author: smartiqa <info@smartiqa.ru>\\
+Date:   Thu Mar 4 14:54:08 2021 +0300\\
+\\
+
+
+\end{document}
